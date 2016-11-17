@@ -1,0 +1,106 @@
+{% extends 'ksda/base.html' %}
+{% block title %}Finances{% endblock %}
+
+{% block bodyBlock %}
+    <script src='https://platform.venmo.com/sdk.js'></script>
+    <!-- AJAX !-->
+    <script type="text/javascript">
+        function jq( myid ) {
+            return "#" + myid.replace( /(:|\.|\[|\])/g, "\\$1" );
+        }
+
+    $(document).ready(function () {
+        $('body').on('click', '.fineDelete', function(e) {
+            // 'Fine ID'
+            fineid = $(this).parent().attr('id');
+                               
+            var jqxhr = $.post( "{% url 'deleteFine' %}",
+                               {id:fineid, csrfmiddlewaretoken: '{{ csrf_token }}'},
+                               function(response) {
+                               $(e.target).closest('tr').remove();
+            });
+        });
+                      
+        $('body').on('click', '.fineComplete', function(e) {
+            // 'Fine ID'
+            fineid = $(this).parent().attr('id');
+                                   
+            var jqxhr = $.post( "{% url 'completeFine' %}",
+                               {id:fineid, csrfmiddlewaretoken: '{{ csrf_token }}'},
+                               function(response) {
+                                    $(e.target).closest('tr').addClass('success').removeClass('danger');
+            });
+        });
+    });
+    </script>
+
+    <h2> Finances </h2>
+    <table class="table table-striped" data-toggle="table">
+        <thead>
+            <tr>
+                <th>Amount</th>
+                <th>Finer</th>
+                <th>Chair</th>
+                <th>Finee</th>
+                <th>Created</th>
+                <th>Comment</th>
+                <th>Pay?</th>
+                {% if finingPower %}
+                <th>Delete?</th>
+                <th>Mark Complete?</th>
+                {% endif %}
+            </tr>
+        </thead>
+    
+        {% for fine in fines %}
+            {% if fine.completed %}
+            <tr class="success">
+            {% else %}
+            <tr class="danger">
+            {% endif %}
+                <td> ${{ fine.amount }} </td>
+                <td> {{ fine.assignedBy.user.first_name }} {{ fine.assignedBy.user.last_name }} </td>
+                <td> {{ fine.chair }} </td>
+                <td> {{ fine.brother.user.first_name }} {{ fine.brother.user.last_name }} </td>
+                <td> {{ fine.created }} </td>
+                <td> {{ fine.reason }} </td>
+                <td> {% if GT.venmoID %}
+                     {% if fine.completed == False %}
+                     {% if fine.brother == brother %}
+                        <a class="venmo-pay-button" data-recipient-id="{{ GT.venmoID }}" data-amount="{{ fine.amount }}"/></a>
+                     {% endif %}
+                     {% endif %}
+                     {% endif %}
+                </td>
+                {% if finingPower %}
+                <td> <div id={{ fine.id }}>
+                        <button class='fineDelete'> Delete </button>
+                     </div>
+                </td>
+                <td> {% if fine.completed == False %}
+                	 <div id={{ fine.id }}>
+                        <button class='fineComplete'> Complete </button>
+                     </div>
+                     {% endif %}
+                </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% if finingPower == True %}
+    <div> <!-- Add Fine !-->
+        <h2> Add Fine </h2>
+        <form method="post" action="{% url 'newFine' %}">
+        <table>
+            {{form}}
+        </table>
+        
+        {% csrf_token %}
+        
+        <input type="submit" value="Create Fine" />
+        </form>
+    </div>
+    {% endif %}
+
+{% endblock %}
