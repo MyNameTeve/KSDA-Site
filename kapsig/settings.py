@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import ConfigParser
+import configparser
 import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -89,15 +89,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 FILE_UPLOAD_MAX_MEMORY_SIZE = 2500000
 
 
 # Email Stuff
-config = ConfigParser.ConfigParser()
+config = configparser.ConfigParser()
 config.read("config.ini")
 
-EMAIL_HOST = config.get('Email', 'Host')
-EMAIL_PORT = config.get('Email', 'Port')
-EMAIL_HOST_USER = config.get('Email', 'User')
-EMAIL_HOST_PASSWORD = config.get('Email', 'Password')
-EMAIL_USE_SSL = True
+#EMAIL_HOST = config.get('Email', 'Host')
+#EMAIL_PORT = config.get('Email', 'Port')
+#EMAIL_HOST_USER = config.get('Email', 'User')
+#EMAIL_HOST_PASSWORD = config.get('Email', 'Password')
+#EMAIL_USE_SSL = True
