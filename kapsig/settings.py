@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import configparser
+import ConfigParser
 import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -94,7 +94,7 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 2500000
 
 
 # Email Stuff
-config = configparser.ConfigParser()
+config = ConfigParser.ConfigParser()
 config.read("config.ini")
 
 #EMAIL_HOST = config.get('Email', 'Host')
