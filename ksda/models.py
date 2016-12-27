@@ -56,7 +56,7 @@ class Role(models.Model):
     worksessionPower = models.BooleanField(default=False)
     waitsessionPower = models.BooleanField(default=False)
     ecPower = models.BooleanField(default=False)
-    brother = models.ForeignKey('Brother', null=True)
+    #brother = models.ForeignKey('Brother', null=True)
 
     def __str__(self):
         return str(self.name)
