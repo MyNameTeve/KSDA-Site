@@ -4,14 +4,14 @@ from django.contrib.auth.models import User
 from django.core.validators import validate_email, RegexValidator
 
 # Importing all forms from submodules within the site.
-from forms_profile import *
-from forms_ec import *
-from forms_waitsession import *
-from forms_worksession import *
-from forms_brotherRoll import *
-from forms_s3 import *
-from forms_forum import *
-from forms_finances import *
+#from forms_profile import *
+#from forms_ec import *
+#from forms_waitsession import *
+#from forms_worksession import *
+#from forms_brotherRoll import *
+#from forms_s3 import *
+#from forms_forum import *
+#from forms_finances import *
 
 class RegistrationForm(forms.Form):
     first_name = forms.CharField(max_length = 30)

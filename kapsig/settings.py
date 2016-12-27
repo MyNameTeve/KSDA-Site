@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import ConfigParser
+#import ConfigParser
 import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -69,7 +69,16 @@ PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__)) + '/'
 DATABASES = {}
 
 db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'] = db_from_env
+print db_from_env
+db_prod = False
+if(db_prod):
+    DATABASES['default'] = db_from_env
+else:
+    DATABASES['default'] = {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+
 
 
 # Internationalization
@@ -94,8 +103,8 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 2500000
 
 
 # Email Stuff
-config = ConfigParser.ConfigParser()
-config.read("config.ini")
+#config = ConfigParser.ConfigParser()
+#config.read("config.ini")
 
 #EMAIL_HOST = config.get('Email', 'Host')
 #EMAIL_PORT = config.get('Email', 'Port')

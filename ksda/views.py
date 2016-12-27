@@ -17,32 +17,32 @@ from django.core.mail import send_mail
 
 from ksda.models import *
 from ksda.forms import *
-from ksda.s3 import *
+#from ksda.s3 import *
 
 # Import all other views to this main file.
 from views_profile import *
-from views_waitsession import *
-from views_worksession import *
-from views_ec import *
-from views_brotherRoll import *
-from views_forum import *
-from views_threads import *
-from views_documents import *
-from views_finances import *
-from views_calendar import *
+#from views_waitsession import *
+#from views_worksession import *
+#from views_ec import *
+#from views_brotherRoll import *
+#from views_forum import *
+#from views_threads import *
+#from views_documents import *
+#from views_finances import *
+#from views_calendar import *
 
 """
 Only called when DB is empty. First brother will get EC powers.
 """
 @transaction.atomic
 def initializeBrotherhood(brother):
-    """
+    #
     ec = Group.objects.create(name='ec')
     ec.save()
 
     membership = Membership(person=brother,group=ec)
     membership.save()
-    """
+    #
 
     admin = Role(name='Admin',
                  finePower=True,

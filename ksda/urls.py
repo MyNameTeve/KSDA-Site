@@ -1,9 +1,9 @@
-from django.conf.urls import include, url
-import views
+from django.conf.urls import include, url, patterns
+from views import *
 
-urlpatterns = [
-    url(r'^$', 'ksda.views.profilePage'),
-    
+urlpatterns = patterns(
+    url(r'^$', profilePage))
+'''    
     url(r'^profile$', 'ksda.views.profilePage', name='profile'),
     url(r'^profile/(?P<observedUserName>\w+)/$', 'ksda.views.profilePageObserved', name='profilePageObserved'),
     url(r'^changePassword$', 'ksda.views.changePassword', name='changePassword'),
@@ -54,4 +54,4 @@ urlpatterns = [
     url(r'^logout$', 'django.contrib.auth.views.logout_then_login', name='logout'),
     url(r'^register$', 'ksda.views.register', name='register'),
     url(r'^confirm-registration/(?P<username>[a-zA-Z0-9_@\+\-]+)/(?P<token>[a-z0-9\-]+)$', 'ksda.views.confirm_registration', name='confirm'),
-]
+    '''
