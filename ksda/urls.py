@@ -8,8 +8,8 @@ urlpatterns = patterns(
     url(r'^logout$', auth_views.logout_then_login, name='logout'),
     url(r'^register$', views.register, name='register'),
     url(r'^confirm-registration/(?P<username>[a-zA-Z0-9_@\+\-]+)/(?P<token>[a-z0-9\-]+)$', views.confirm_registration, name='confirm'),
-    url(r'^profile$', views.profilePage, name='profile'))
-'''
+    url(r'^profile$', views.profilePage, name='profile'),
+
     url(r'^profile/(?P<observedUserName>\w+)/$', views.profilePageObserved, name='profilePageObserved'),
     url(r'^changePassword$', views.changePassword, name='changePassword'),
     url(r'^updateProfileStandard$', views.updateProfileStandard, name='updateProfileStandard'),
@@ -55,15 +55,3 @@ urlpatterns = patterns(
     url(r'^deleteRole$', views.deleteRole, name='deleteRole'),
 
     url(r'^sendEmail$', views.sendEmail, name='sendEmail'))
-'''
-
-
-'''
-<!--<li><a href={% url 'worksessions' %}>Worksessions</a></li>
-                            <li><a href={% url 'waitsessions' %}>Waitsessions</a></li>
-                            <li><a href={% url 'finances' %}>Finances</a></li>
-                            <li><a href={% url 'forum' %}>Forum</a></li>
-                            <li><a href={% url 'documents' %}>Documents</a></li>
-                            <li><a href={% url 'brotherRoll' %}>Brother Roll</a></li>
-                            <li><a href={% url 'calendar' %}>Calendar</a></li> -->
-'''

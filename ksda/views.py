@@ -21,15 +21,15 @@ from ksda.forms import *
 
 # Import all other views to this main file.
 from views_profile import *
-#from views_waitsession import *
-#from views_worksession import *
-#from views_ec import *
-#from views_brotherRoll import *
-#from views_forum import *
-#from views_threads import *
-#from views_documents import *
-#from views_finances import *
-#from views_calendar import *
+from views_waitsession import *
+from views_worksession import *
+from views_ec import *
+from views_brotherRoll import *
+from views_forum import *
+from views_threads import *
+from views_documents import *
+from views_finances import *
+from views_calendar import *
 
 """
 Only called when DB is empty. First brother will get EC powers.
