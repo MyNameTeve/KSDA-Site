@@ -25,7 +25,7 @@ config.read("config.ini")
 SECRET_KEY = config.get('Secret Key', 'SecretKey')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = True
 
