@@ -13,6 +13,7 @@ from boto.s3.key import Key
 
 # Upload the file to the s3 bucket specified above.
 def s3_upload(uploaded_file, filename):
+    return False
 #    s3conn = boto.connect_s3(AWS_ACCESS_KEY,AWS_SECRET_ACCESS_KEY)
 #    bucket = s3conn.get_bucket(S3_BUCKET)
     
@@ -31,6 +32,7 @@ def s3_upload(uploaded_file, filename):
 
 # Delete the file with id=id from the s3 bucket.
 def s3_delete(filename):
+    return False
 #    s3conn = boto.connect_s3(AWS_ACCESS_KEY,AWS_SECRET_ACCESS_KEY)
 #    bucket = s3conn.get_bucket(S3_BUCKET)
 #    
@@ -40,6 +42,7 @@ def s3_delete(filename):
 
 # Used for pre-populating database with already existing documents.
 def initializeDocuments():
+    return False
 #    s3conn = boto.connect_s3(AWS_ACCESS_KEY,AWS_SECRET_ACCESS_KEY)
 #    bucket = s3conn.get_bucket(S3_BUCKET)
 #    return bucket.list()
