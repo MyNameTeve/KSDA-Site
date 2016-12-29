@@ -17,7 +17,7 @@ from django.core.mail import send_mail
 
 from ksda.models import *
 from ksda.forms import *
-#from ksda.s3 import *
+from ksda.s3 import *
 
 # Import all other views to this main file.
 from views_profile import *
