@@ -113,3 +113,10 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 2500000
 #EMAIL_HOST_USER = config.get('Email', 'User')
 #EMAIL_HOST_PASSWORD = config.get('Email', 'Password')
 #EMAIL_USE_SSL = True
+
+#SJ: Trying to use sendgrid instead.
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
