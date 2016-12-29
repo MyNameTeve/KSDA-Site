@@ -25,11 +25,11 @@ config.read("config.ini")
 SECRET_KEY = config.get('Secret Key', 'SecretKey')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['https://ksda.herokuapp.com/']
+ALLOWED_HOSTS = ['ksda.herokuapp.com']
 
 
 # Application definition
