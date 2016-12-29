@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 
 from ksda.models import *
-#from ksda.forms import *
+from ksda.forms import *
 
 @login_required
 def getUserInfo(request, user, originalContext):
