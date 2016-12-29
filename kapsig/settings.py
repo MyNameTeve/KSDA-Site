@@ -10,19 +10,22 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-#import ConfigParser
+import ConfigParser
 import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+config = ConfigParser.ConfigParser()
+config.read("config.ini")
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'x0k8uu*0i!$y72=o^#q=(gkb0m!g7w6igl)4wk*a_7e&kxqji_'
+SECRET_KEY = config.get('Secret Key', 'SecretKey')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
@@ -105,18 +108,16 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 2500000
 
 
 # Email Stuff
-#config = ConfigParser.ConfigParser()
-#config.read("config.ini")
 
-#EMAIL_HOST = config.get('Email', 'Host')
-#EMAIL_PORT = config.get('Email', 'Port')
-#EMAIL_HOST_USER = config.get('Email', 'User')
-#EMAIL_HOST_PASSWORD = config.get('Email', 'Password')
-#EMAIL_USE_SSL = True
+EMAIL_HOST = config.get('Email', 'Host')
+EMAIL_PORT = config.get('Email', 'Port')
+EMAIL_HOST_USER = config.get('Email', 'User')
+EMAIL_HOST_PASSWORD = config.get('Email', 'Password')
+EMAIL_USE_TLS = True
 
 #SJ: Trying to use sendgrid instead.
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+#EMAIL_HOST = 'smtp.sendgrid.net'
+#EMAIL_HOST_USER = 'apikey'
+#EMAIL_HOST_PASSWORD = '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'
+#EMAIL_PORT = 587
+#EMAIL_USE_TLS = True
