@@ -66,13 +66,13 @@ def initializeBrotherhood(brother):
 
 
 
-    for document in documents:
-        filename = document.name
-        url = document.generate_url(expires_in=0, query_auth=False)
-        new_document = Document(user=brother.user,
-                                filename=filename,
-                                url=url)
-        new_document.save()
+    #for document in documents:
+    #    filename = document.name
+    #    url = document.generate_url(expires_in=0, query_auth=False)
+    #    new_document = Document(user=brother.user,
+    #                            filename=filename,
+    #                            url=url)
+    #    new_document.save()
 
     #add the work sessions to the data bases
     initializeWorksessions()
