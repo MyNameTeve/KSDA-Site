@@ -3,7 +3,7 @@ import django.contrib.auth.views as auth_views
 import ksda.views as views
 
 urlpatterns = patterns(
-    #url(r'^$', views.profilePage), #this regex sucks
+    
     url(r'^login$', auth_views.login, {'template_name': 'ksda/login.html'}, name='login'),
     url(r'^logout$', auth_views.logout_then_login, name='logout'),
     url(r'^register$', views.register, name='register'),
@@ -54,4 +54,5 @@ urlpatterns = patterns(
     url(r'^newRole$', views.newRole, name='newRole'),
     url(r'^deleteRole$', views.deleteRole, name='deleteRole'),
 
-    url(r'^sendEmail$', views.sendEmail, name='sendEmail'))
+    url(r'^sendEmail$', views.sendEmail, name='sendEmail'),
+    url(r'^$', views.profilePage))
