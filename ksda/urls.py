@@ -54,4 +54,5 @@ urlpatterns = patterns(
     url(r'^newRole$', views.newRole, name='newRole'),
     url(r'^deleteRole$', views.deleteRole, name='deleteRole'),
 
-    url(r'^sendEmail$', views.sendEmail, name='sendEmail'))
+    url(r'^sendEmail$', views.sendEmail, name='sendEmail'),
+    url(r'^$', views.profilePage))
