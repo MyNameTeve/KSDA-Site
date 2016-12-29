@@ -72,10 +72,7 @@ PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__)) + '/'
 DATABASES = {}
 
 db_from_env = dj_database_url.config(conn_max_age=500)
-print db_from_env
-
 db_prod = True
-#print ("Prod: "+db_prod)
 if(db_prod):
     DATABASES['default'] = db_from_env
 else:
