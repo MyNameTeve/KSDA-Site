@@ -3,8 +3,8 @@ import django.contrib.auth.views as auth_views
 import ksda.views as views
 
 urlpatterns = patterns(
-    url(r'^login$', auth_views.login, name='login'), #{'template_name': 'ksda/login.html'},
     url(r'^logout$', auth_views.logout_then_login, name='logout'),
+    url(r'^login$', auth_views.login, {'template_name': 'ksda/login.html'}, name='login'),
     url(r'^register$', views.register, name='register'),
     url(r'^confirm-registration/(?P<username>[a-zA-Z0-9_@\+\-]+)/(?P<token>[a-z0-9\-]+)$', views.confirm_registration, name='confirm'),
     url(r'^profile$', views.profilePage, name='profile'),
