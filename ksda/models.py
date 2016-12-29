@@ -80,14 +80,14 @@ class Brother(models.Model):
 
     def brotherRollInfo(self):
         return [self.order, 
-                reverse('ksda.views.profilePageObserved', None, [str(self.user.username)]), 
+                reverse('profilePageObserved', None, [str(self.user.username)]), 
                 self.getName(), 
                 self.email, 
                 self.number, 
                 self.getRolesPretty()]
     
     def pledgeRollInfo(self):
-        return [reverse('ksda.views.profilePageObserved', None, [str(self.user.username)]),
+        return [reverse('profilePageObserved', None, [str(self.user.username)]),
                 self.getName(),
                 self.email,
                 self.number]
