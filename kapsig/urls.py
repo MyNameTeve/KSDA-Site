@@ -10,4 +10,5 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ksda/', include("ksda.urls")),
+    url(r'^', include("ksda.urls")),
 )
