@@ -149,10 +149,10 @@ def register(request):
 
         #FIX THIS TO GET EC EMAILS.
         ec = Role.objects.filter(ecPower=True)
-        ec_member_emails = []
+        ec_emails = []
         for member in ec:
             try:
-                ec_member_emails.append(member.brother.email)
+                ec_emails.append(member.brother.email)
             except:
                 continue
     
@@ -160,7 +160,7 @@ def register(request):
         send_mail(subject="New Registration Requires Your Approval",
                   message=email_body,
                   from_email="kappasigmadeltaalpha@gmail.com",
-                  recipient_list=ec_member_emails)
+                  recipient_list=ec_emails)
     
         return render(request, 'ksda/needs-confirmation.html', context)
 
