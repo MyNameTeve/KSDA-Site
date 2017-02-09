@@ -137,7 +137,7 @@ def newFine(request):
     email_body = '''
     Dear %s %s,
     
-    You have been fined %s by %s as %s.
+    You have been fined %s by %s %s as %s.
     
     Reason: %s
     
@@ -145,7 +145,8 @@ def newFine(request):
     
     Sincerely,
     
-    KSDA ''' % (finedBrother.user.first_name, finedBrother.user.last_name, fine.amount, userBrother.name,
+    KSDA ''' % (finedBrother.user.first_name, finedBrother.user.last_name, fine.amount,
+                userBrother.user.first_name, userBrother.user.last_name,
                 form.cleaned_data['chair'], form.cleaned_data['reason'],
                 userBrother.name)
     
