@@ -138,7 +138,7 @@ def newFine(request):
     email_body = '''
     Dear %s %s,
     
-    You have been fined %s by %s %s as %s.
+    You have been fined $%s by %s %s as %s.
     
     Reason: %s
     
