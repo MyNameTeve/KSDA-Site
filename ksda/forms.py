@@ -9,7 +9,7 @@ from forms_ec import *
 from forms_waitsession import *
 from forms_worksession import *
 from forms_brotherRoll import *
-#from forms_s3 import *
+from forms_s3 import *
 from forms_forum import *
 from forms_finances import *
 
