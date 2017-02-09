@@ -156,6 +156,6 @@ def newFine(request):
     send_mail(subject=subjectLine,
                   message=email_body,
                   from_email="kappasigmadeltaalpha@gmail.com",
-                  recipient_list=[userBrother.user.email, finedBrother.user.email])
+                  recipient_list=[userBrother.email, finedBrother.email])
 
     return routeToFinancesPage(request,context)
