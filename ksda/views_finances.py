@@ -3,6 +3,7 @@ from django.db import transaction
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.core.mail import send_mail
 
 from ksda.models import *
 from ksda.forms import NewFineForm
