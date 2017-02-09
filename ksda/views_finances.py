@@ -123,6 +123,8 @@ def newFine(request):
     if form.cleaned_data['chair'].brother != userBrother:
         context['dangerMessage'] = 'You are not that chair!'
         return routeToFinancesPage(request,context)
+    
+    finedBrother = Brother.objects.get(name=form.cleaned_data['brother'])
 
     fine = Fine.objects.create(reason=form.cleaned_data['reason'],
                                brother=form.cleaned_data['brother'],
@@ -131,5 +133,25 @@ def newFine(request):
                                chair=form.cleaned_data['chair'])
     fine.save()
     context['successMessage'] = 'Fine Created.'
+    
+    email_body = '''
+    Dear %s,
+    
+    You have been fined %s by %s as %s.
+    
+    Reason: %s
+    
+    If you think this fine is out of order, please contact %s or the EC.
+    
+    Sincerely,
+    
+    KSDA ''' % (brother.name, fine.amount, userBrother.name,
+                form.cleaned_data['chair'], form.cleaned_data['reason'],
+                userBrother.name)
+    
+    send_mail(subject="KSDA: Fine to %s" %(form.cleaned_data('brother')),
+                  message=email_body,
+                  from_email="kappasigmadeltaalpha@gmail.com",
+                  recipient_list=userBrother.email, )
 
     return routeToFinancesPage(request,context)
