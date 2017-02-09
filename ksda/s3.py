@@ -3,8 +3,8 @@ import boto
 import io
 from boto.s3.key import Key
 
-#config = ConfigParser.ConfigParser()
-#config.read("config.ini")
+config = ConfigParser.ConfigParser()
+config.read("config.ini")
 
 # Retrieve the AWS ACCESS KEYS and bucket name.
 AWS_ACCESS_KEY = config.get('S3', 'AccessKey')
