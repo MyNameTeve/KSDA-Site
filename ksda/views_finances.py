@@ -151,7 +151,9 @@ def newFine(request):
                 form.cleaned_data['chair'], form.cleaned_data['reason'],
                 userBrother.user.first_name)
     
-    send_mail(subject="KSDA: Fine to %s" %(form.cleaned_data('brother')),
+    subjectLine = "KSDA: Fine to %s" %(form.cleaned_data['brother'])
+    
+    send_mail(subject=subjectLine,
                   message=email_body,
                   from_email="kappasigmadeltaalpha@gmail.com",
                   recipient_list=userBrother.email, )
