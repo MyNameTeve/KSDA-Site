@@ -148,7 +148,7 @@ def newFine(request):
     KSDA ''' % (finedBrother.user.first_name, finedBrother.user.last_name, fine.amount,
                 userBrother.user.first_name, userBrother.user.last_name,
                 form.cleaned_data['chair'], form.cleaned_data['reason'],
-                userBrother.name)
+                userBrother.user.first_name)
     
     send_mail(subject="KSDA: Fine to %s" %(form.cleaned_data('brother')),
                   message=email_body,
