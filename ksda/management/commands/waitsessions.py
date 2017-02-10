@@ -13,6 +13,11 @@ class Command(BaseCommand):
 		thursday = Brother.objects.all().filter(active=True, waitsessionbrotherinfo__freeH = True).order_by("waitsessionbrotherinfo__units","-order")
 		friday = Brother.objects.all().filter(active=True, waitsessionbrotherinfo__freeF = True).order_by("waitsessionbrotherinfo__units","-order")
 		
+		
+		assigned = {}
+		for brother in Brother.objects.all():
+			assigned[brother.order] = False
+		defaultBrother = Brother.objects.get(order=69)
 		# m = []
 		# t = []
 		# w = []
@@ -33,7 +38,7 @@ class Command(BaseCommand):
 
 		count = -1	
 		today = datetime.date.today()
-		#set an offset to add tot he current day to get to the closest sunday then add to 
+		#set an offset to add to the current day to get to the closest sunday then add to 
 		#get the desired day
 		offset =  6 - datetime.date.today().weekday()
 		#determine the date of the week for the different wait session days
@@ -45,53 +50,56 @@ class Command(BaseCommand):
 		#loop through all the brothers available for the given day and give them that waitsession
 		#once 3 are assigned break out of the loop
 		for b in monday:
-			count += 1
-			if (count >= 3):
+			if (count >= 2):
 				break
-			else:
+			elif (not assigned[b.order]):
 				new_waitsession = Waitsession.objects.create(date=m, brotherinfo=b.waitsessionbrotherinfo)
-    			new_waitsession.save()
-  
-    	
-			count = -1
+				assigned[b.order] = True
+				new_waitsession.save()
+				count += 1
+		count = -1
+		
 	    	for b in tuesday:
+			if (count >= 2):
+				break
+			elif (not assigned[b.order]):
+				#if not already assigned, we assign
+				new_waitsession = Waitsession.objects.create(date=t, brotherinfo=b.waitsessionbrotherinfo)
+				assigned[b.order] = True
+				new_waitsession.save()
 				count += 1
-				if (count >= 3):
-					
-					break
-				else:
-					new_waitsession = Waitsession.objects.create(date=t, brotherinfo=b.waitsessionbrotherinfo)
-	    			new_waitsession.save()
 	    	count = -1			
-	    	for b in wednesday:
+	    	
+		for b in wednesday:
+			if (count >= 2):
+				break
+			elif (not assigned[b.order]):
+				#if not already assigned, we assign
+				new_waitsession = Waitsession.objects.create(date=w, brotherinfo=b.waitsessionbrotherinfo)
+				assigned[b.order] = True
+				new_waitsession.save()
 				count += 1
-				if (count >= 3):
-					
-					break
-				else:
-					new_waitsession = Waitsession.objects.create(date=w,
-	                                    brotherinfo=b.waitsessionbrotherinfo)
-	    			new_waitsession.save()
-	    	count = -1
+	    	count = -1			
 	    	for b in thursday:
+			if (count >= 2):
+				break
+			elif (not assigned[b.order]):
+				#if not already assigned, we assign
+				new_waitsession = Waitsession.objects.create(date=h, brotherinfo=b.waitsessionbrotherinfo)
+				assigned[b.order] = True
+				new_waitsession.save()
 				count += 1
-				if (count >= 3):
-					
-					break
-				else:
-					new_waitsession = Waitsession.objects.create(date=h,
-	                                    brotherinfo=b.waitsessionbrotherinfo)
-	    			new_waitsession.save()
-	    	count = -1
+	    	count = -1			
 	    	for b in friday:
+			if (count >= 2):
+				break
+			elif (not assigned[b.order]):
+				#if not already assigned, we assign
+				new_waitsession = Waitsession.objects.create(date=f, brotherinfo=b.waitsessionbrotherinfo)
+				assigned[b.order] = True
+				new_waitsession.save()
 				count += 1
-				if (count >= 3):
-					
-					break
-				else:
-					new_waitsession = Waitsession.objects.create(date=f,
-	                                    brotherinfo=b.waitsessionbrotherinfo)
-	    			new_waitsession.save()
+	    	count = -1			
     	
 
     	
