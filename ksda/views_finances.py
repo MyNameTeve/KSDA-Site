@@ -153,9 +153,12 @@ def newFine(request):
     
     subjectLine = "KSDA: Fine to %s" %(form.cleaned_data['brother'])
     
-    send_mail(subject=subjectLine,
+    if(PRODUCTION):
+        send_mail(subject=subjectLine,
                   message=email_body,
-                  from_email="kappasigmadeltaalpha@gmail.com",
+                  from_email="DoNotReply@ksda.herokuapp.com",
                   recipient_list=[userBrother.email, finedBrother.email])
+    print [userBrother.email, finedBrother.email]
+    
 
     return routeToFinancesPage(request,context)

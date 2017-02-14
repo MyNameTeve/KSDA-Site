@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from ksda.models import *
 import datetime
+from kapsig.settings import PRODUCTION
 
 from django.core.mail import send_mail
 
@@ -41,7 +42,7 @@ class Command(BaseCommand):
 
        
         
-    
+		if(PRODUCTION):
     			#send the email to the person who got that worksession
     			send_mail(subject="New Worksession Assignment",
                 	message=email_body,

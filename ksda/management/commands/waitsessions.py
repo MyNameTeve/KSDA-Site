@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 from ksda.models import *
 import datetime
 from django.core.mail import send_mail
+from kapsig.settings import PRODUCTION
 
 class Command(BaseCommand):
 
@@ -118,7 +119,8 @@ class Command(BaseCommand):
 				count += 1
 	    	count = -1			
     	
-		sendingList = Brother.objects.values_list('email', flat=True);
+		sendingList = Brother.objects.values_list('email', flat=True)
+		print sendingList
 	
 		endingList = ['AEKDB', 'Semper', 'Yours in Brotherhood', 'Interfraternally Yours']
 
@@ -148,11 +150,11 @@ class Command(BaseCommand):
 				w_namelist, r_namelist, f_namelist, 'AEKDB')
 		
 		print(email_body)
-		
-		send_mail(subject="Waitsession Assignments",
-		          message=email_body,
-		          from_email="DoNotReply@ksda.herokuapp.com",
-		          recipient_list=sendingList)
+		if(PRODUCTION):
+			send_mail(subject="Waitsession Assignments",
+			          message=email_body,
+			          from_email="DoNotReply@ksda.herokuapp.com",
+			          recipient_list=sendingList)
     
     	
     	
