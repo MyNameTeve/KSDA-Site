@@ -72,8 +72,8 @@ PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__)) + '/'
 DATABASES = {}
 
 db_from_env = dj_database_url.config(conn_max_age=500)
-db_prod = True
-if(db_prod):
+PRODUCTION = True #Set as True if in production
+if(PRODUCTION):
     DATABASES['default'] = db_from_env
 else:
     DATABASES['default'] = {
