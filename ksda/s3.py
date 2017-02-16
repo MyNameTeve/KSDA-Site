@@ -1,5 +1,5 @@
-import ConfigParser
 import boto
+import os
 import io
 from boto.s3.key import Key
 
